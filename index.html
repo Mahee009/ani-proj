@@ -2,40 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
-    <title>Anniversary Surprise</title>
+    <script src="main.js" type="text/javascript"></script>
+    <title>Flowers</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .text {
+            font-size: 2.5em;
+            opacity: 0;
+            animation: pop 1s forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .flowers {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 60vh;
+            width: 100%;
+        }
+
+        .flower {
+            position: relative;
+            margin: 0 10px;
+            animation: grow 1s forwards;
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .flower__leafs {
+            position: absolute;
+            bottom: 20px;
+            width: 30px;
+            height: 30px;
+            background: pink;
+            border-radius: 50%;
+        }
+
+        .flower__leaf--1 {
+            transform: rotate(45deg);
+            top: 10px;
+            left: -20px;
+        }
+
+        .flower__leaf--2 {
+            transform: rotate(-45deg);
+            top: 10px;
+            right: -20px;
+        }
+
+        .flower__white-circle {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .flower__line {
+            width: 10px;
+            height: 60px;
+            background: green;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
-<body class="not-loaded">
-    <div class="message">
-        <span class="letter">I</span>
-        <span class="letter"> </span>
-        <span class="letter">l</span>
-        <span class="letter">o</span>
-        <span class="letter">v</span>
-        <span class="letter">e</span>
-        <span class="letter"> </span>
-        <span class="letter">y</span>
-        <span class="letter">o</span>
-        <span class="letter">u</span>
-        <span class="letter"> </span>
-        <span class="letter">s</span>
-        <span class="letter">o</span>
-        <span class="letter">o</span>
-        <span class="letter"> </span>
-        <span class="letter">m</span>
-        <span class="letter">u</span>
-        <span class="letter">c</span>
-        <span class="letter">h</span>
-        <span class="letter">!</span>
-    </div>
-    <div class="night"></div>
+
+<body>
+    <div class="text" id="loveText">I love you so much</div>
+
     <div class="flowers">
-        <!-- Flower elements go here -->
-        <div class="flower flower--1"></div>
-        <div class="flower flower--2"></div>
-        <div class="flower flower--3"></div>
+        <div class="flower flower--1">
+            <div class="flower__leafs flower__leafs--1">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line"></div>
+        </div>
+
+        <div class="flower flower--2">
+            <div class="flower__leafs flower__leafs--2">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line"></div>
+        </div>
+
+        <div class="flower flower--3">
+            <div class="flower__leafs flower__leafs--3">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line"></div>
+        </div>
     </div>
+
+    <script>
+        const text = document.getElementById('loveText');
+        const message = text.innerText;
+        text.innerHTML = ''; // Clear the text
+
+        message.split('').forEach((letter, index) => {
+            setTimeout(() => {
+                text.innerHTML += letter; // Add each letter with a delay
+                text.style.opacity = 1; // Make the text visible
+            }, index * 500); // Adjust the timing for how fast you want the letters to pop
+        });
+    </script>
 </body>
 </html>
