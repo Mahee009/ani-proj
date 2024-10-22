@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const message = document.querySelector('.message');
-    message.style.opacity = '1';
-});
+onload = () => {
+    const c = setTimeout(() => {
+      document.body.classList.remove("not-loaded");
+      clearTimeout(c);
+    }, 1000);
+  };
